@@ -1,15 +1,12 @@
+require "./io.rb"
 require "./rules.rb"
 
-printFunction = /print .*[\"\"A-Za-z0-9!]/
-
 def parse(line)
-    if (line.match(/print .*[\"\"A-Za-z0-9!]/)) then
+    if (line.match($printFunction)) then
         statement = line
-        statement["print "] = ""
-        puts statement
+        statement[$printKeyword] = ""
+
+        io = Output.new(statement)
+        io.exec()
     end
-  
-    #if (line.match(/exit/)) then
-    #  isRunning = false
-    #end
-  end
+end
