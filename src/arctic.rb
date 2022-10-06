@@ -1,3 +1,9 @@
+=begin
+  + ------------------------------------------ +
+  |
+  + ------------------------------------------ +
+=end
+
 puts "Welcome to Arctic - a programming language written in Ruby"
 
 require "./parse.rb"
