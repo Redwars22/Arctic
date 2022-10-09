@@ -10,7 +10,7 @@ require "./parse.rb"
 require "./rules.rb"
 
 while true do
-  print "arctic -$: "
+  print "🧊: "
   command = gets
 
   parse(command)
