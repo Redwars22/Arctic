@@ -12,8 +12,7 @@ class Output
 
     def exec()
         typeChecker = Type.new(@arg)
-        puts typeChecker.checkType
-
+        typeChecker.checkType
         puts @arg
     end
 end
