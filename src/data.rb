@@ -16,7 +16,11 @@ class ArcticBinding
         typeOfValue = typeChecker.checkType()
 
         if type == typeOfValue then
-            puts "variable created..."
+            $binding[identifier] = {
+                "type" => type,
+                "value" => value,
+                "immutable" => false
+            }
             return
         end
 
