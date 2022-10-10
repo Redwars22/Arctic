@@ -53,5 +53,9 @@ def parse(line)
         exit
     end
 
+    if (line.match($singleLineComment)) then
+        return
+    end
+
     err = ArcticError.new("invalid command found at line #{$currentLine}}", "err")
 end
