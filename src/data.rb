@@ -4,8 +4,10 @@ $binding = {}
 
 class ArcticBinding
     def initialize(statement)
-        @statement = statement
-        @tokens = @statement.split(' ')
+        if(statement != nil) then
+            @statement = statement
+            @tokens = @statement.split(' ')
+        end
     end
 
     def create()
@@ -25,5 +27,23 @@ class ArcticBinding
         end
 
         err = ArcticError.new($ERR_TYPE_MISMATCH, "err")
+    end
+
+    def searchInBindings(identifier)
+        if identifier.include?("&") then
+            identifier["&"] = ""
+        end
+
+        identifier = identifier.strip()
+        data = $binding.fetch(identifier)
+
+        if data then
+            return data
+        else err = ArcticError.new($ERR_BINDING_NOT_FOUND, "err")
+        end
+    end
+
+    def printBindings()
+        puts $bindings
     end
 end

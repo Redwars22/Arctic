@@ -25,6 +25,10 @@ def parse(line)
         return
     end
 
+    if line == "" then
+        return
+    end
+    
     if (line.match($printFunction)) then
         statement = line
         statement[$printKeyword] = ""
@@ -57,5 +61,10 @@ def parse(line)
         return
     end
 
-    err = ArcticError.new("invalid command found at line #{$currentLine}}", "err")
+    if (line.match(/var_dump/)) then
+        puts $binding
+        return
+    end
+
+    err = ArcticError.new("invalid command found at line #{$currentLine + 1}}", "err")
 end

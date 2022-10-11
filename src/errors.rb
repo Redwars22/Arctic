@@ -1,4 +1,5 @@
 $ERR_TYPE_MISMATCH = "type mismatch"
+$ERR_BINDING_NOT_FOUND = "variable or constant not found"
 
 class ArcticError
     def initialize(err, type)

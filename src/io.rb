@@ -11,11 +11,26 @@ class Input
     end
 
     def exec()
-        #it checks the type of the user input and,
-        #if it matches the type of the variable,
-        #it's then stored there
-        input = gets
-        puts input
+        #It checks if the variable exists and is not a constant
+        bindings = ArcticBinding.new(nil)
+        variable = bindings.searchInBindings(@arg)
+        
+        if variable then
+            if !variable["immutable"] then
+                #it checks the type of the user input and,
+                #if it matches the type of the variable,
+                #it's then stored there
+                userInput = gets
+                typeChecker = Type.new(userInput)
+                type = typeChecker.checkType()
+                #puts "#{type} = #{variable}"
+
+                if type == variable["type"] then
+                    $binding[@arg]["value"] = userInput.strip
+                else err = ArcticError.new($ERR_TYPE_MISMATCH, "err")
+                end
+            end
+        end
     end
 end
 
@@ -30,6 +45,13 @@ class Output
 
         if(type == "math_expr") then
             puts eval(@arg)
+            return
+        end
+
+        if(type == "var_const") then
+            bindings = ArcticBinding.new(nil)
+            data = bindings.searchInBindings(@arg)
+            puts data["value"]
             return
         end
 
