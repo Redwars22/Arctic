@@ -70,5 +70,19 @@ def parse(line)
         return
     end
 
+    if (line.match($awaitFunction)) then
+        puts "Press enter to continue..."
+        key = gets
+        return
+    end
+
+    if (line.match($deleteFunction)) then
+        data = ArcticBinding.new(nil)
+        line["delete "] = ""
+        identifier = line
+        data.deleteBindings(identifier) 
+        return
+    end
+
     err = ArcticError.new("invalid command found at line #{$currentLine + 1}}", "err")
 end
