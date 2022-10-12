@@ -30,7 +30,6 @@ def parse(line)
     end
 
     if (line.match($codeBlock) or line == "}") then
-        puts "block found"
         return
     end
     
