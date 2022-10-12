@@ -28,6 +28,11 @@ def parse(line)
     if line == "" then
         return
     end
+
+    if (line.match($codeBlock) or line == "}") then
+        puts "block found"
+        return
+    end
     
     if (line.match($printFunction)) then
         statement = line
