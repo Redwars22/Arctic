@@ -78,7 +78,7 @@ def parse(line)
 
     if (line.match($deleteFunction)) then
         data = ArcticBinding.new(nil)
-        line["delete "] = ""
+        line["destroy "] = ""
         identifier = line
         data.deleteBindings(identifier) 
         return
