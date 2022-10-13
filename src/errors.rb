@@ -1,5 +1,6 @@
 $ERR_TYPE_MISMATCH = "type mismatch"
 $ERR_BINDING_NOT_FOUND = "variable or constant not found"
+$ERR_IMMUT_CONST = "you cannot change the value of a constant"
 
 class ArcticError
     def initialize(err, type)

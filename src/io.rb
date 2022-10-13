@@ -29,6 +29,7 @@ class Input
                     $binding[@arg]["value"] = userInput.strip
                 else err = ArcticError.new($ERR_TYPE_MISMATCH, "err")
                 end
+            else err = ArcticError.new($ERR_IMMUT_CONST, "err")
             end
         end
     end

@@ -18,7 +18,15 @@ class ArcticBinding
         typeOfValue = typeChecker.checkType()
 
         if identifier.include?("!") then
-            err = ArcticError.new("declaring constants is not supported yet in Arctic", "warn")
+            identifier["!"] = ""
+            if type == typeOfValue then
+                $binding[identifier] = {
+                    "type" => type,
+                    "value" => value,
+                    "immutable" => true
+                }
+                return
+            end
             return
         end
 
@@ -59,5 +67,6 @@ class ArcticBinding
             $binding.delete(identifier.strip())
             return
         else err = ArcticError.new("you cannot delete #{identifier} because it doesn't exist", "err")
+        end
     end
 end
