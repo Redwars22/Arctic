@@ -1,3 +1,11 @@
+=begin
+  + ------------------------------------------ +
+  | (c) 2022 - André Pereira (AndrewNation)    |
+  | This piece of software is open source and  |
+  | subject to the GNU General Public License  |
+  + ------------------------------------------ +
+=end
+
 $awaitFunction = /await/
 $codeBlock = /.*[A-Za-z_]: {/
 $declarationStatement = /[A-Za-z_ !] = .*[A-Za-z0-9_ ]/
