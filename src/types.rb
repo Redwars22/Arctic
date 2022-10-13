@@ -4,7 +4,7 @@ $stringType = /(.*[A-Za-z_0-9])/
 $numberType = /.*[0-9]/
 $logicType = /(yes)|(no)/
 $arrayType = /\[.*[A-Za-z_0-9\"\]]/
-$mathType = /.*[0-9\+\-\*\/\=]/
+$mathType = /.*[0-9] .*[\+\-\*\/\= ] .*[0-9]/
 $varConstRule = /&.*[A-Za-z_]/
 
 $STRING = "string"
@@ -24,6 +24,10 @@ class Type
             return $VARCONST
         end 
 
+        if @arg.match($mathType) then
+            return $MATH_EXPR
+        end
+
         if @arg.match($numberType) then
             return $NUMBER
         end
@@ -31,10 +35,6 @@ class Type
         if @arg.match($stringType) then
             return $STRING
         end       
-
-        if @arg.match($mathType) then
-            return $MATH_EXPR
-        end
 
         if @arg.match($logicType) then
             return $BOOLEAN
