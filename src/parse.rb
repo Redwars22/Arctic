@@ -62,6 +62,7 @@ def parse(line)
     end
 
     if (line.match($stopCommand) || (line.match($returnCommand))) then
+        puts "The program has exited"
         exit
     end
 
