@@ -5,6 +5,10 @@ require "./data.rb"
 $currentLine = 0
 
 def parse(line)
+    if line.include?(";") then
+        line[";"] = ""
+    end
+
     if (line.match(/exec .*[A-Za-z]\.ice/)) then
         $currentLine = 0
         filename = line
