@@ -11,7 +11,7 @@ require "./errors.rb"
 $stringType = /(.*[A-Za-z_0-9])/
 $numberType = /.*[0-9]/
 $logicType = /(yes)|(no)/
-$arrayType = /\[.*[A-Za-z_0-9\"\]]/
+$arrayType = /\[.*[A-Za-z_0-9,\"\]]/
 $mathType = /.*[0-9] .*[\+\-\*\/\= ] .*[0-9]/
 $varConstRule = /&.*[A-Za-z_]/
 

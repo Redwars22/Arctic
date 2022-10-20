@@ -6,4 +6,8 @@
   + ------------------------------------------ +
 =end
 
-$assign = "="
+$ASSIGN = "="
+$ARRAY_START = ""
+$ARRAY_EL_SEPARATOR = ""
+$ARRAY_END = ""
+$BLOCK_END = ""

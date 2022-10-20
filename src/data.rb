@@ -7,6 +7,9 @@
 =end
 
 require "./errors.rb"
+require "./operators.rb"
+require "./types.rb"
+require "./data.rb"
 
 $binding = {}
 
@@ -75,6 +78,27 @@ class ArcticBinding
             $binding.delete(identifier.strip())
             return
         else err = ArcticError.new("you cannot delete #{identifier} because it doesn't exist", "err")
+        end
+    end
+
+    def assignToVariable(statement)
+        statement = statement.split("<=")
+        tokens = statement
+        identifier = tokens[0].strip()
+        value = tokens[1].strip()
+
+        searchInBindings identifier
+
+        if $binding[identifier]['immutable'] == false then
+            type = Type.new(value)
+            typeOfData = type.checkType()
+            typeOfVariable = $binding[identifier]['type']
+
+            if typeOfData == typeOfVariable then
+                $binding[identifier]['value'] = value
+            else err = ArcticError.new("type #{typeOfData} is not assignalable to type #{typeOfVariable}", "err")
+            end
+        else err = ArcticError.new($ERR_IMMUT_CONST, "err")
         end
     end
 end

@@ -9,6 +9,7 @@
 $ERR_TYPE_MISMATCH = "type mismatch"
 $ERR_BINDING_NOT_FOUND = "variable or constant not found"
 $ERR_IMMUT_CONST = "you cannot change the value of a constant"
+$ERR_EL_ALREADY_EXISTS = "you cannot redeclare a variable, constant or array that already exists"
 
 class ArcticError
     def initialize(err, type)

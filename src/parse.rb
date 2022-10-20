@@ -24,9 +24,19 @@ def parse(line)
         file = File.new(filename.strip(), "r")
         code = file.readlines()
         index = 0
+        isMultiLineComment = false
 
         while index < code.length do
-            if(code[index] != "")
+            if(code[index].include?("/*"))
+                isMultiLineComment = true
+            end
+
+            if(code[index].include?("*/"))
+                index += 1
+                isMultiLineComment = false
+            end
+
+            if(code[index] != "" and !isMultiLineComment)
                 parse(code[index].strip())
             end
 
@@ -38,6 +48,10 @@ def parse(line)
     end
 
     if line == "" then
+        return
+    end
+
+    if (line.match($singleLineComment)) then
         return
     end
 
@@ -69,14 +83,17 @@ def parse(line)
         return
     end
 
+    if (line.match($assignTo)) then
+        data = ArcticBinding.new(nil)
+        data.assignToVariable(line)
+        return
+    end
+
     if (line.match($stopCommand) || (line.match($returnCommand))) then
         puts "The program has exited"
         exit
     end
 
-    if (line.match($singleLineComment)) then
-        return
-    end
 
     if (line.match(/var_dump/)) then
         puts $binding
