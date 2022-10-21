@@ -9,6 +9,7 @@
 require "./io.rb"
 require "./rules.rb"
 require "./data.rb"
+require "./array.rb"
 
 $currentLine = 0
 
@@ -74,6 +75,12 @@ def parse(line)
 
         io = Input.new(statement)
         io.exec()
+        return
+    end
+
+    if (line.match($arrayStatement)) then
+        array = ArcticArray.new(line)
+        array.createArray()
         return
     end
 

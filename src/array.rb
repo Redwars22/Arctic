@@ -6,7 +6,7 @@
   + ------------------------------------------ +
 =end
 
-include "./data.rb"
+require "./data.rb"
 
 class ArcticArray
     def initialize(statement)
@@ -15,21 +15,23 @@ class ArcticArray
         end
     end
 
-    def createArray(@statement)
+    def createArray()
         @statement = @statement.split($ASSIGN)
         tokens = @statement
         identifier = tokens[0]
+        identifier[$ARRAY] = ""
+        identifier = identifier.strip()
         data = tokens[1]
 
         data[$ARRAY_START] = ""
-        data[$ARRAY_END]] = ""
+        data[$ARRAY_END] = ""
         data = data.split($ARRAY_EL_SEPARATOR)
 
-        bind = ArcticBinding.new(nil)
-
-        if bind.searchInBindings(identifier) then
-            err = ArcticError.new($ERR_EL_ALREADY_EXISTS, "err")
-        end
+        #
+        #   if bind.searchInBindings(identifier) then
+        #       err = ArcticError.new($ERR_EL_ALREADY_EXISTS, "err")
+        #   end
+        #
 
         $binding[identifier] = {
             "type" => "array",

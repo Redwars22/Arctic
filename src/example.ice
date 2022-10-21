@@ -1,7 +1,7 @@
 program: {
     main: {
         string name = "Emmanuel";
-        name <= 19;
+        //name <= 19;
         display &name;
 
         /*Comentário
@@ -11,5 +11,7 @@ program: {
         uma
         linha
         */
+
+        array num = [1, 2, 3, 4, 5, 6]
     }
 }

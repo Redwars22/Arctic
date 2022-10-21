@@ -17,14 +17,15 @@ class ArcticBinding
     def initialize(statement)
         if(statement != nil) then
             @statement = statement
-            @tokens = @statement.split(' ')
+            @tokens = @statement.split($ASSIGN)
         end
     end
 
     def create()
-        type = @tokens[0]
-        identifier = @tokens[1]
-        value = @tokens[3]
+        dataIdentifier = @tokens[0].split(' ')
+        type = dataIdentifier[0]
+        identifier = dataIdentifier[1]
+        value = @tokens[1]
         typeChecker = Type.new(value)
         typeOfValue = typeChecker.checkType()
 

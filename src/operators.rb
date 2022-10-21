@@ -7,7 +7,7 @@
 =end
 
 $ASSIGN = "="
-$ARRAY_START = ""
-$ARRAY_EL_SEPARATOR = ""
-$ARRAY_END = ""
+$ARRAY_START = "["
+$ARRAY_EL_SEPARATOR = ","
+$ARRAY_END = "]"
 $BLOCK_END = ""

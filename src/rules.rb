@@ -6,6 +6,7 @@
   + ------------------------------------------ +
 =end
 
+$arrayStatement = /array .*[A-Za-z_] = \[.*[A-Za-z_0-9, \"]\]/
 $assignTo = /[A-Za-z_] <= .*/
 $awaitFunction = /await/
 $codeBlock = /.*[A-Za-z_]: {/
