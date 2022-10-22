@@ -6,8 +6,12 @@
   + ------------------------------------------ +
 =end
 
-$ASSIGN = "="
+$ASSIGN = "<="
 $ARRAY_START = "["
 $ARRAY_EL_SEPARATOR = ","
 $ARRAY_END = "]"
 $BLOCK_END = ""
+$STATEMENT_BLOCK_END = "};"
+$VAR = "&"
+
+$MATH_OPER = /.*[<>=\/\*%\+\-]/

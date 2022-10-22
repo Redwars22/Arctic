@@ -1,17 +1,17 @@
 program: {
     main: {
-        string name = "Emmanuel";
-        //name <= 19;
-        display &name;
+        number num = 0;
 
-        /*Comentário
-        de
-        mais
-        de
-        uma
-        linha
-        */
+        prompt num;
+        
+        if num == 2 {
+            display "You got it right!";
+        };
 
-        array num = [1, 2, 3, 4, 5, 6]
+        if num != 2 {
+            display "You got it wrong!";
+        };
+
+        return;
     }
 }

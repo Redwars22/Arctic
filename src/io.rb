@@ -7,6 +7,7 @@
 =end
 
 require "./types.rb"
+require "./array.rb"
 
 $printKeyword = "display "
 $promptKeyword = "prompt "
@@ -51,6 +52,12 @@ class Output
     def exec()
         typeChecker = Type.new(@arg)
         type = typeChecker.checkType
+
+        if (@arg.match($arrayRetrieveElement)) then
+            array = ArcticArray.new(@arg)
+            array.queryElementByIndex()
+            return
+        end
 
         if(type == "math_expr") then
             puts eval(@arg)

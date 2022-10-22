@@ -10,6 +10,7 @@ require "./errors.rb"
 require "./operators.rb"
 require "./types.rb"
 require "./data.rb"
+require "./array.rb"
 
 $binding = {}
 
@@ -17,7 +18,7 @@ class ArcticBinding
     def initialize(statement)
         if(statement != nil) then
             @statement = statement
-            @tokens = @statement.split($ASSIGN)
+            @tokens = @statement.split("=")
         end
     end
 
@@ -83,10 +84,15 @@ class ArcticBinding
     end
 
     def assignToVariable(statement)
-        statement = statement.split("<=")
+        statement = statement.split($ASSIGN)
         tokens = statement
         identifier = tokens[0].strip()
         value = tokens[1].strip()
+
+        if value.match($arrayRetrieveElement) then
+            arr = ArcticArray.new(value)
+            value = arr.queryElementByIndex()
+        end
 
         searchInBindings identifier
 

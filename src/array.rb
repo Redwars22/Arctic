@@ -16,7 +16,7 @@ class ArcticArray
     end
 
     def createArray()
-        @statement = @statement.split($ASSIGN)
+        @statement = @statement.split("=")
         tokens = @statement
         identifier = tokens[0]
         identifier[$ARRAY] = ""
@@ -41,6 +41,29 @@ class ArcticArray
     end
 
     def queryElementByIndex()
+        tokens = @statement.split($ARRAY_START)
+        identifier = tokens[0]
+        identifier[$VAR] = ""
+        index = tokens[1]
+        index[$ARRAY_END] = ""
+        index = index.to_i
+        
+        if $binding[identifier]['value'][index] then
+            return $binding[identifier]['value'][index].strip()
+        else err = ArcticError.new($ERR_NOT_FOUND, "err")
+        end
+    end
+
+    def assignElement()
+        tokens = @statement.split($ASSIGN)
+        array = tokens[0].split($ARRAY_START)
+        identifier = array[0].strip()
+        index = array[1].strip()
+        index[$ARRAY_END] = ""
+        value = tokens[1]
+
+        $binding[identifier]['value'][index.to_i] = value
+        return
     end
 
     def getArray()

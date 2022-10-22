@@ -10,6 +10,8 @@ require "./io.rb"
 require "./rules.rb"
 require "./data.rb"
 require "./array.rb"
+require "./struct.rb"
+require "./operators.rb"
 
 $currentLine = 0
 
@@ -26,6 +28,7 @@ def parse(line)
         code = file.readlines()
         index = 0
         isMultiLineComment = false
+        isIfStatement = false
 
         while index < code.length do
             if(code[index].include?("/*"))
@@ -37,8 +40,26 @@ def parse(line)
                 isMultiLineComment = false
             end
 
-            if(code[index] != "" and !isMultiLineComment)
+            if(code[index] != "" and !isMultiLineComment and !isIfStatement)
                 parse(code[index].strip())
+            end
+
+            if (code[index].match($ifStatementRule)) then
+                code[index]["if "] = ""
+                code[index]["{"] = ""
+                $ifStatement['condition'] = code[index]
+                if_struct = ArcticStruct.new()
+                isIfStatement = true
+                index += 1
+            end
+
+            if (isIfStatement && code[index].include?($STATEMENT_BLOCK_END)) then
+                if_struct.handleIfStatement
+                isIfStatement = false
+            end
+
+            if isIfStatement then
+                $ifStatement["execIfTrue"].push(code[index].strip)
             end
 
             index += 1
@@ -53,6 +74,10 @@ def parse(line)
     end
 
     if (line.match($singleLineComment)) then
+        return
+    end
+
+    if (line.match($ifStatementRule)) then
         return
     end
 
@@ -81,6 +106,12 @@ def parse(line)
     if (line.match($arrayStatement)) then
         array = ArcticArray.new(line)
         array.createArray()
+        return
+    end
+
+    if (line.match($arrayAssignStatement)) then
+        array = ArcticArray.new(line)
+        array.assignElement()
         return
     end
 
