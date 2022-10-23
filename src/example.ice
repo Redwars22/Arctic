@@ -2,16 +2,14 @@ program: {
     main: {
         number num = 0;
 
+        function sayHello {
+            display "hello world";
+        }
+    
+        display "55";
         prompt num;
-        
-        if num == 2 {
-            display "You got it right!";
-        };
+        display &num;
 
-        if num != 2 {
-            display "You got it wrong!";
-        };
-
-        return;
+        sayHello();
     }
 }

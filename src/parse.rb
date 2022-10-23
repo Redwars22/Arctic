@@ -12,6 +12,7 @@ require "./data.rb"
 require "./array.rb"
 require "./struct.rb"
 require "./operators.rb"
+require "./func.rb"
 
 $currentLine = 0
 
@@ -29,6 +30,8 @@ def parse(line)
         index = 0
         isMultiLineComment = false
         isIfStatement = false
+        isFunction = false
+        funcIdentifier = ""
 
         while index < code.length do
             if(code[index].include?("/*"))
@@ -40,8 +43,24 @@ def parse(line)
                 isMultiLineComment = false
             end
 
-            if(code[index] != "" and !isMultiLineComment and !isIfStatement)
+            if(code[index] != "" and !isMultiLineComment and !isIfStatement and !isFunction)
                 parse(code[index].strip())
+            end
+
+            if code[index].match($functionStatement) then
+                isFunction = true
+                func = ArcticFunction.new()
+                funcIdentifier = func.declareFunction(code[index])
+                index += 1
+            end
+
+            if isFunction and !isIfStatement and code[index].include?("}") then
+                isFunction = false
+                funcIdentifier = ""
+            end
+
+            if isFunction then
+                $functions[funcIdentifier].push(code[index].strip())
             end
 
             if (code[index].match($ifStatementRule)) then
@@ -78,6 +97,20 @@ def parse(line)
     end
 
     if (line.match($ifStatementRule)) then
+        return
+    end
+
+    if (line.match($functionStatement)) then
+        return
+    end
+
+    if (line.match($functionCallStatement)) then
+        identifier = line
+        identifier["()"] = ""
+        identifier = identifier.strip()
+
+        func = ArcticFunction.new()
+        func.execFunction(identifier)
         return
     end
 

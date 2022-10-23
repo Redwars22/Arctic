@@ -24,7 +24,7 @@ class ArcticStruct
 
         while token < tokens.length do
             _token = tokens[token]
-            if !_token.match($numberType) and !(_token.match($MATH_OPER)) then
+            if !_token.include?("\"") and !_token.match($numberType) and !(_token.match($MATH_OPER)) then
                 tokens[token] = $binding[_token]["value"]
             end
 

@@ -14,6 +14,8 @@ $awaitFunction = /await/
 $codeBlock = /.*[A-Za-z_]: {/
 $declarationStatement = /[A-Za-z_ !] = .*[A-Za-z0-9_ ]/
 $deleteFunction = /destroy .*[A-Za-z_]/
+$functionCallStatement = /.*[A-Za-z_]\(\)/
+$functionStatement = /function .*[A-Za-z_] {/
 $ifStatementRule = /if .* {/ 
 $printFunction = /display .*[\"\"A-Za-z0-9!]/
 $promptFunction = /prompt .*[A-Za-z_]/
