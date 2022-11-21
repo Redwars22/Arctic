@@ -1,5 +1,11 @@
 # 🐻‍❄️ ARCTIC (EXPERIMENTAL) PROGRAMMING LANGUAGE
 
+> # ⚠️ Dear user,
+> Titanium and Arctic are two projects of mine and my goal was to implement an intepreted minimalistic programming language.
+> These repos probably won't be updated from now on, mainly due to the lack of time and motivation to keep working on those projects.
+> However, if you want to try them all, please read their docs and download their interpreters and try writing a few simple programs using them. If you want to clone any of those projects and keep working on them or even use them as a basis for your own programming language, feel free to do so.
+> A huge hug from @AndrewNation!
+
 ### 📖 INTRODUCTION
 Arctic is an imperative statically typed interpreted programming language written in Ruby by AndrewNation. It was also originally planned to be a reimplementation of Titanium, another programming language created by the same creator of Arctic, but it then evolved independently and he added things he regretted not having added to Titanium, such as a type system. Arctic is currently in its very early development stages and its beta version is planned to be released around January 2023. Its syntax was influenced by Ruby and Python with some subtile influences from C++, Pascal, and Java.
 
